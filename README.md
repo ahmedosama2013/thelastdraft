@@ -30,4 +30,4 @@ The game runs entirely in your browser and does not connect to any third-party s
 
 Made By : ahmedosama2013b@gmail.com
 
-Link : https://thelastdraft.netlify.app
+Link : https://playthelastdraft.netlify.app/
