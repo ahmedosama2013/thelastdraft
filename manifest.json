@@ -1,7 +1,7 @@
 {
   "name": "The Last Draft",
-  "short_name": "Last Draft",
-  "description": "A first-person horror thriller about light, darkness and an unfinished manuscript. Raw WebGL, no dependencies.",
+  "short_name": "TheLastDraft",
+  "description": "A first-person horror thriller about light, darkness and an unfinished manuscript.",
   "id": "./",
   "start_url": "./",
   "scope": "./",
