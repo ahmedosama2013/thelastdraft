@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <title>The Last Draft</title>
+  <defs>
+    <linearGradient id="cone" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f1cf94" stop-opacity="0.95"/>
+      <stop offset="0.55" stop-color="#b97a3f" stop-opacity="0.62"/>
+      <stop offset="1" stop-color="#7b4e28" stop-opacity="0.32"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="32" cy="11" r="22" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f6dfb0" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#b97a3f" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#06080a"/>
+  <rect x="0.75" y="0.75" width="62.5" height="62.5" rx="13.25" fill="none" stroke="#d9d3c3" stroke-opacity="0.18" stroke-width="1.5"/>
+  <circle cx="32" cy="11" r="22" fill="url(#glow)"/>
+  <polygon points="28.5,11 35.5,11 55,57 9,57" fill="url(#cone)"/>
+  <rect x="9" y="56" width="46" height="1.6" fill="#d9d3c3" fill-opacity="0.35"/>
+  <g fill="#06080a">
+    <polygon points="32,22 25.5,35 38.5,35"/>
+    <polygon points="32,29 23.5,44 40.5,44"/>
+    <polygon points="32,37 21,55 43,55"/>
+    <rect x="30.4" y="54" width="3.2" height="3.6"/>
+  </g>
+  <rect x="27.5" y="6.5" width="9" height="3.2" rx="1" fill="#d9d3c3"/>
+  <circle cx="32" cy="11" r="3.2" fill="#fbeccb"/>
+</svg>

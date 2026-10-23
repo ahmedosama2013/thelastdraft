@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Last Draft</title>
+<meta name="description" content="A first-person horror thriller about light, darkness and an unfinished manuscript. Raw WebGL, no dependencies.">
+<meta name="theme-color" content="#06080a">
+<meta name="color-scheme" content="dark">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="gl" tabindex="-1"></canvas>
+
+<div id="hud" class="hidden" aria-live="polite">
+  <div id="compass">
+    <div id="cm-heading">N</div>
+    <div id="cm-line"><i id="cm-mark"></i></div>
+  </div>
+  <div id="objective"></div>
+  <div id="status">
+    <div id="battery"><div id="bat-cells"></div><span id="bat-spare"></span></div>
+    <div id="flares"></div>
+    <div id="stamina"><i id="stam-fill"></i></div>
+    <div id="haven">In the light</div>
+  </div>
+  <div id="toast"></div>
+  <div id="reticle"><i id="ret-ring"></i><i id="ret-dot"></i><div id="ret-bar"><i id="ret-fill"></i></div></div>
+  <div id="threats"></div>
+  <div id="hurtdir"></div>
+  <div id="prompt"><span id="prompt-text"></span><div id="prompt-bar"><i id="prompt-fill"></i></div></div>
+  <div id="sub"></div>
+</div>
+
+<section id="screen-title" class="screen">
+  <div class="title-block">
+    <h1>The Last Draft</h1>
+    <div class="rule"></div>
+    <p class="tagline">Light is a wage. The dark pays in pages.</p>
+    <nav class="menu" aria-label="Main menu">
+      <button class="link" id="btn-begin" data-action="begin">Begin</button>
+      <button class="link hidden" id="btn-anew" data-action="anew">Begin a new game</button>
+      <button class="link" data-action="bright" data-opt="bright">Brightness</button>
+      <button class="link" data-action="sens" data-opt="sens">Sensitivity</button>
+      <button class="link" data-action="controls">Controls</button>
+      <button class="link" data-action="credits">Credits</button>
+    </nav>
+  </div>
+  <p class="foot">Best with headphones, in a dark room.</p>
+</section>
+
+<section id="screen-controls" class="screen veil">
+  <div class="panel">
+    <h2>Controls</h2>
+    <div class="rule"></div>
+    <dl class="keys">
+      <div><dt>W A S D</dt><dd>Move</dd></div>
+      <div><dt>Mouse</dt><dd>Look</dd></div>
+      <div><dt>Shift</dt><dd>Sprint. It tires you out; let your breath return before running again</dd></div>
+      <div><dt>Space</dt><dd>Jump</dd></div>
+      <div><dt>Q</dt><dd>Flashlight on and off</dd></div>
+      <div><dt>Hold left mouse</dt><dd>Focus the beam. It burns shadow faster and drains the battery faster</dd></div>
+      <div><dt>F</dt><dd>Throw a flare</dd></div>
+      <div><dt>R</dt><dd>Swap in a spare battery</dd></div>
+      <div><dt>E</dt><dd>Read, hold to operate</dd></div>
+      <div><dt>M</dt><dd>Mute</dd></div>
+      <div><dt>Esc</dt><dd>Pause</dd></div>
+    </dl>
+    <p class="note">If the pointer cannot be locked, drag with the left mouse button to look and hold the right mouse button to focus.</p>
+    <p class="note">The Unwritten are shielded by shadow. Burn it off with the beam, then finish them with a flare or a lamp. Streetlamps and cabin lights are safe ground: they restore the battery and keep your place. Red marks around your sight show where something is closing in. Loose margin notes lie off the road for those who go looking.</p>
+    <button class="link" data-action="back">Back</button>
+  </div>
+</section>
+
+<section id="screen-credits" class="screen veil">
+  <div class="panel center">
+    <h2>The Last Draft</h2>
+    <div class="rule"></div>
+    <p class="credit-line">Made By : ahmedosama2013b@gmail.com</p>
+    <p class="note"></p>
+    <button class="link" data-action="back">Back</button>
+  </div>
+</section>
+
+<section id="screen-pause" class="screen veil">
+  <div class="panel center">
+    <h2>Paused</h2>
+    <div class="rule"></div>
+    <nav class="menu" aria-label="Pause menu">
+      <button class="link" data-action="unpause">Resume</button>
+      <button class="link" data-action="bright" data-opt="bright">Brightness</button>
+      <button class="link" data-action="sens" data-opt="sens">Sensitivity</button>
+      <button class="link" data-action="controls">Controls</button>
+      <button class="link" data-action="restart">Restart the chapter</button>
+      <button class="link" data-action="quit">Leave to the title</button>
+    </nav>
+  </div>
+</section>
+
+<section id="screen-ending" class="screen ending">
+  <div class="ending-body">
+    <h2 id="ending-title">The Last Draft</h2>
+    <div class="rule"></div>
+    <div id="ending-lines"></div>
+    <div id="ending-actions"><button class="link" data-action="toTitle">Return to the title</button></div>
+  </div>
+</section>
+
+<div id="chapter-card">
+  <div id="cc-roman"></div>
+  <div class="rule"></div>
+  <div id="cc-title"></div>
+  <div id="cc-sub"></div>
+</div>
+
+<div id="page-reader" class="hidden" role="dialog" aria-label="Manuscript page">
+  <div class="paper">
+    <div class="paper-head"><span>Manuscript</span><span id="pg-folio"></span></div>
+    <div class="rule"></div>
+    <div id="pg-text"></div>
+    <div class="rule"></div>
+    <div id="pg-hint">E to put it away</div>
+  </div>
+</div>
+
+<div id="loading" class="hidden"><span>Setting the scene</span></div>
+<div id="fatal" class="hidden"><p id="fatal-msg"></p></div>
+<div id="fade"></div>
+
+<noscript><p style="position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:30px;text-align:center;font-style:italic;color:#a39e91;background:#06080a">The Last Draft needs JavaScript and WebGL to draw the dark.</p></noscript>
+<script type="module" src="main.js"></script>
+</body>
+</html>

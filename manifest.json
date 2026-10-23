@@ -1,0 +1,23 @@
+{
+  "name": "The Last Draft",
+  "short_name": "Last Draft",
+  "description": "A first-person horror thriller about light, darkness and an unfinished manuscript. Raw WebGL, no dependencies.",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "fullscreen",
+  "display_override": ["fullscreen", "standalone"],
+  "orientation": "landscape",
+  "background_color": "#06080a",
+  "theme_color": "#06080a",
+  "lang": "en",
+  "categories": ["games", "entertainment"],
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
